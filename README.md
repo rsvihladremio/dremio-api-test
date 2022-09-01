@@ -13,17 +13,19 @@ python cli.py --username myuser --password 'mypassword' "select * from \"localho
 # Help
 
 ```sh
-cli.py -h       
-usage: cli.py [-h] [--username USERNAME] [--password PASSWORD] [--dremio [DREMIO]] [query ...]
+python cli.py -h
+usage: cli.py [-h] [--username USERNAME] [--password PASSWORD] [--dremio [DREMIO]] [--pollfreq [POLLFREQ]] [query ...]
 
 Process some integers.
 
 positional arguments:
-  query                query to send to the server for testing
+  query                 query to send to the server for testing
 
 optional arguments:
-  -h, --help           show this help message and exit
-  --username USERNAME  username to log into dremio
-  --password PASSWORD  password to log into dremio
-  --dremio [DREMIO]    url for the dremio server
+  -h, --help            show this help message and exit
+  --username USERNAME   username to log into dremio
+  --password PASSWORD   password to log into dremio
+  --dremio [DREMIO]     url for the dremio server
+  --pollfreq [POLLFREQ]
+                        poll job status every x milliseconds
 ```
