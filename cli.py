@@ -6,14 +6,14 @@ import time
 
 def api_get(endpoint, dremio_server, headers):
   url = '{server}/api/v3/{endpoint}'.format(server=dremio_server, endpoint=endpoint)
-  print(url)
+  #print(url)
   return json.loads(requests.get(url, headers=headers).text)
 
 def api_post(endpoint, dremio_server, headers, body=None):
   url = '{server}/api/v3/{endpoint}'.format(server=dremio_server, endpoint=endpoint)
-  print(url)
-  print(headers)
-  print(body)
+  #print(url)
+  #print(headers)
+  #print(body)
   text = requests.post(url, headers=headers, data=json.dumps(body)).text
 
   # a post may return no data
@@ -56,7 +56,7 @@ def run(args):
     jobid = query_sql(args.query[0], dremio_server, headers)
     while True:
         try:
-            time.sleep(10/1000)
+            time.sleep(args.pollfreq/1000)
             job_status = api_get('job/%s' % jobid, dremio_server, headers)
             print("job status is %s" % job_status)
         except KeyboardInterrupt:
@@ -71,6 +71,7 @@ if __name__ == "__main__":
     parser.add_argument('--password', help='password to log into dremio')
     parser.add_argument('query', nargs='*', help='query to send to the server for testing')
     parser.add_argument('--dremio',  nargs='?', default='http://localhost:9047', help='url for the dremio server')
+    parser.add_argument('--pollfreq', nargs='?', default=10, type=int, help='poll job status every x milliseconds')
 
     args = parser.parse_args()
     run(args)
