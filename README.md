@@ -12,6 +12,7 @@ python cli.py --username myuser --password 'mypassword' "select * from \"localho
 
 # Help
 
+```sh
 cli.py -h       
 usage: cli.py [-h] [--username USERNAME] [--password PASSWORD] [--dremio [DREMIO]] [query ...]
 
@@ -25,3 +26,4 @@ optional arguments:
   --username USERNAME  username to log into dremio
   --password PASSWORD  password to log into dremio
   --dremio [DREMIO]    url for the dremio server
+```
